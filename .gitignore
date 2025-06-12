@@ -1,0 +1,16 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Flask instance folder (if used for configs/secrets)
+instance/
+
+# SQLite DB files
+*.db
+
+# VS Code workspace files (optional, for cleanliness)
+.vscode/
+
+# Node.js (frontend)
+frontend/node_modules/
