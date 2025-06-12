@@ -30,6 +30,18 @@ def create_contact():
     
     return jsonify({"message": "User created!"}), 201
 
+# Updating the contact
+app.route("/update_contact/<int:user_id>", methods=["PATCH"])
+def update_contact(user_id):
+    contact = Contact.query.get(user_id) # Looking for the user
+
+    # Check if the user does not exist
+    if not contact:
+        return jsonify({"message": "User not found"}), 404
+    
+    # If contact is found
+    data = request.json
+    contact.first_name = data.get("firstName", contact.first_name)
 
 
 if __name__ == "__main__":
