@@ -4,6 +4,11 @@ A simple full-stack CRUD application for managing contacts, built with React (fr
 
 ---
 
+**Tech stack:**  
+[![Python](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/flask-2.0-green.svg)](https://flask.palletsprojects.com/)
+[![React](https://img.shields.io/badge/react-18.x-blue.svg)](https://react.dev/)
+
 ## Features
 
 - **Create** new contacts (first name, last name, email)
