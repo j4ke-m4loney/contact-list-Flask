@@ -42,6 +42,14 @@ def update_contact(user_id):
     # If contact is found
     data = request.json
     contact.first_name = data.get("firstName", contact.first_name)
+    contact.last_name = data.get("lastName", contact.last_name)
+    contact.email = data.get("email", contact.email)
+
+    db.session.commit()
+
+    return jsonify({"message": "User updated"}), 200 
+
+
 
 
 if __name__ == "__main__":
