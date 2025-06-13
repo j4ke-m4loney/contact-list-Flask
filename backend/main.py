@@ -1,6 +1,9 @@
 from flask import request, jsonify
+from flask_cors import CORS
 from config import app, db
 from models import Contact
+
+CORS(app)
 
 # Getting the contact
 @app.route("/contacts", methods=["GET"])
@@ -31,15 +34,13 @@ def create_contact():
     return jsonify({"message": "User created!"}), 201
 
 # Updating the contact
-app.route("/update_contact/<int:user_id>", methods=["PATCH"])
+@app.route("/update_contact/<int:user_id>", methods=["PATCH"])
 def update_contact(user_id):
     contact = Contact.query.get(user_id) # Looking for the user
 
-    # Check if the user does not exist
     if not contact:
         return jsonify({"message": "User not found"}), 404
     
-    # If contact is found
     data = request.json
     contact.first_name = data.get("firstName", contact.first_name)
     contact.last_name = data.get("lastName", contact.last_name)
@@ -49,12 +50,11 @@ def update_contact(user_id):
 
     return jsonify({"message": "User updated"}), 200 
 
-# Handling and Deleting
-app.route("/delete_contact/<int:user_id", methods=["DELETE"])
+# Deleting the contact
+@app.route("/delete_contact/<int:user_id>", methods=["DELETE"])
 def delete_contact(user_id):
     contact = Contact.query.get(user_id)
 
-    # Check if the user does not exist
     if not contact:
         return jsonify({"message": "User not found"}), 404
     
@@ -62,7 +62,6 @@ def delete_contact(user_id):
     db.session.commit()
 
     return jsonify({"message": "User deleted"}), 200
-
 
 if __name__ == "__main__":
     with app.app_context():
